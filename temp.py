@@ -6,6 +6,15 @@ import plotly.plotly as py # plotly library
   import sys
   import Adafruit_DHT
 
+# Type of sensor, can be Adafruit_DHT.DHT11, Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302. 
+DHT_TYPE = Adafruit_DHT.DHT22 
+
+# Example of sensor connected to Raspberry Pi pin ?? might be pin 7 or 4
+DHT_PIN  = 7
+
+# How long to wait (in seconds) between measurements.
+FREQUENCY_SECONDS      = 30
+
 with open('./config.json') as config_file:
   plotly_user_config = json.load(config_file)
   
@@ -24,15 +33,6 @@ print "View your streaming graph here: ", url
 
 stream = py.Stream(plotly_user_config['8w88bpgxr5'][0])
 stream.open()
-
-# Type of sensor, can be Adafruit_DHT.DHT11, Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302. 
-DHT_TYPE = Adafruit_DHT.DHT22 
-
-# Example of sensor connected to Raspberry Pi pin ?? might be pin 7 or 4
-DHT_PIN  = 7
-
-# How long to wait (in seconds) between measurements.
-FREQUENCY_SECONDS      = 30
 
 while True: 
   # Attempt to get sensor reading. 
